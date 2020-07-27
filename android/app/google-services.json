@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "362612906345",
+    "firebase_url": "https://something-relax.firebaseio.com",
+    "project_id": "something-relax",
+    "storage_bucket": "something-relax.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362612906345:android:b12ddd0ded80d9ce5cc5f8",
+        "android_client_info": {
+          "package_name": "com.example.kaimood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362612906345-ghtssjkbuf1nbd4epckbebfgql6vb41c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3kK0umgUn8F7CH2wJ5rHRiyFm3De9-_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362612906345-ghtssjkbuf1nbd4epckbebfgql6vb41c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
