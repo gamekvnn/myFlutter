@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kaimood/model/chapter_model.dart';
 import 'package:kaimood/page/detail/design_theme.dart';
+import 'package:kaimood/widget/button.dart';
 
 class ChapterScreen extends StatefulWidget {
 
@@ -144,52 +145,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                                     color: DesignTheme.grey,
                                   ),
                                 ),
-                                    AnimatedOpacity(
-                                      duration: const Duration(milliseconds: 500),
-                                      opacity: opacity3,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 16, bottom: 16, right: 16),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            Expanded(
-                                              child: Container(
-                                                height: 48,
-                                                decoration: BoxDecoration(
-                                                  color: DesignTheme.nearlyBlue,
-                                                  borderRadius: const BorderRadius.all(
-                                                    Radius.circular(16.0),
-                                                  ),
-                                                  boxShadow: <BoxShadow>[
-                                                    BoxShadow(
-                                                        color: DesignTheme
-                                                            .nearlyBlue
-                                                            .withOpacity(0.5),
-                                                        offset: const Offset(1.1, 1.1),
-                                                        blurRadius: 10.0),
-                                                  ],
-                                                ),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Join Course',
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 18,
-                                                      letterSpacing: 0.0,
-                                                      color: DesignTheme
-                                                          .nearlyWhite,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                   BlueButton('ok'),
                                 ],
                                 ),
                               ),
