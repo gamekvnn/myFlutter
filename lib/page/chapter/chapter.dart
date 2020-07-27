@@ -51,9 +51,7 @@ class _ChapterScreenState extends State<ChapterScreen>
 
   @override
   Widget build(BuildContext context) {
-    final double tempHeight = MediaQuery.of(context).size.height -
-        (MediaQuery.of(context).size.width / 1.2) +
-        24.0;
+    final double tempHeight =  MediaQuery.of(context).size.height;
     return Container(
       color: DesignTheme.nearlyWhite,
       child: Scaffold(
@@ -93,7 +91,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                               ? tempHeight
                               : infoHeight),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
@@ -131,13 +129,12 @@ class _ChapterScreenState extends State<ChapterScreen>
                             ),
                           ),
                           Expanded(
-                            child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 500),
-                              opacity: opacity2,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 16, right: 16, top: 8, bottom: 8),
-                                child: Text(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Expanded(
+                                child: Column(
+                                  children: [
+                                Text(
                                   '${info[i].content}',
                                   textAlign: TextAlign.justify,
                                   style: TextStyle(
@@ -146,61 +143,61 @@ class _ChapterScreenState extends State<ChapterScreen>
                                     letterSpacing: 0.27,
                                     color: DesignTheme.grey,
                                   ),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
                                 ),
-                              ),
-                            ),
-                          ),
-                          AnimatedOpacity(
-                            duration: const Duration(milliseconds: 500),
-                            opacity: opacity3,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16, bottom: 16, right: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Container(
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        color: DesignTheme.nearlyBlue,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(16.0),
-                                        ),
-                                        boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                              color: DesignTheme
-                                                  .nearlyBlue
-                                                  .withOpacity(0.5),
-                                              offset: const Offset(1.1, 1.1),
-                                              blurRadius: 10.0),
-                                        ],
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          'Join Course',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            letterSpacing: 0.0,
-                                            color: DesignTheme
-                                                .nearlyWhite,
-                                          ),
+                                    AnimatedOpacity(
+                                      duration: const Duration(milliseconds: 500),
+                                      opacity: opacity3,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 16, bottom: 16, right: 16),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Expanded(
+                                              child: Container(
+                                                height: 48,
+                                                decoration: BoxDecoration(
+                                                  color: DesignTheme.nearlyBlue,
+                                                  borderRadius: const BorderRadius.all(
+                                                    Radius.circular(16.0),
+                                                  ),
+                                                  boxShadow: <BoxShadow>[
+                                                    BoxShadow(
+                                                        color: DesignTheme
+                                                            .nearlyBlue
+                                                            .withOpacity(0.5),
+                                                        offset: const Offset(1.1, 1.1),
+                                                        blurRadius: 10.0),
+                                                  ],
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Join Course',
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 18,
+                                                      letterSpacing: 0.0,
+                                                      color: DesignTheme
+                                                          .nearlyWhite,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  )
                                 ],
+                                ),
                               ),
                             ),
                           ),
                           SizedBox(
                             height: MediaQuery.of(context).padding.bottom,
-                          )
+                          ),
                         ],
                       ),
                     ),
