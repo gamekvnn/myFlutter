@@ -3,20 +3,18 @@ import 'package:kaimood/model/chapter_model.dart';
 import 'package:kaimood/page/detail/design_theme.dart';
 
 class ChapterScreen extends StatefulWidget {
-  final List<ChapterModel> info;
 
+  List<ChapterModel> info;
   ChapterScreen(this.info);
-
   @override
-  _ChapterScreenState createState() => _ChapterScreenState(info);
+  _ChapterScreenState createState() => _ChapterScreenState(this.info);
 }
 
 class _ChapterScreenState extends State<ChapterScreen>
     with TickerProviderStateMixin {
-  final List<ChapterModel> info;
 
+  List<ChapterModel> info;
   _ChapterScreenState(this.info);
-
   final double infoHeight = 364.0;
   AnimationController animationController;
   Animation<double> animation;
@@ -24,7 +22,6 @@ class _ChapterScreenState extends State<ChapterScreen>
   double opacity2 = 0.0;
   double opacity3 = 0.0;
   int i = 0;
-
   @override
   void initState() {
     animationController = AnimationController(
@@ -58,24 +55,43 @@ class _ChapterScreenState extends State<ChapterScreen>
         (MediaQuery.of(context).size.width / 1.2) +
         24.0;
     return Container(
-      color: Colors.white,
+      color: DesignTheme.nearlyWhite,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[
+            Column(
+              children: <Widget>[
+                AspectRatio(
+                  aspectRatio: 1.2,
+
+                ),
+              ],
+            ),
             Positioned(
-              top: 20,
+              top: 0,
               bottom: 0,
               left: 0,
               right: 0,
-              child: SingleChildScrollView(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: DesignTheme.nearlyWhite,
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: DesignTheme.grey.withOpacity(0.2),
+                        offset: const Offset(1.1, 1.1),
+                        blurRadius: 10.0),
+                  ],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8),
                   child: SingleChildScrollView(
                     child: Container(
                       constraints: BoxConstraints(
                           minHeight: infoHeight,
-                          maxHeight: 3000.0),
+                          maxHeight: tempHeight > infoHeight
+                              ? tempHeight
+                              : infoHeight),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,10 +100,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                             padding: const EdgeInsets.only(
                                 top: 32.0, left: 18, right: 16),
                             child: Text(
-                              "Chương " +
-                                  info[i].id.toString() +
-                                  ": " +
-                                  info[i].chapterName,
+                              'Chương ${info[i].id}: ${info[i].chapterName}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -99,17 +112,17 @@ class _ChapterScreenState extends State<ChapterScreen>
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                left: 16, right: 16, bottom: 8, top: 8),
+                                left: 16, right: 16, bottom: 8, top: 0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  info[i].nameOfNovel,
+                                  '${info[i].nameOfNovel}',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w200,
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     letterSpacing: 0.27,
                                     color: DesignTheme.nearlyBlack,
                                   ),
@@ -124,91 +137,64 @@ class _ChapterScreenState extends State<ChapterScreen>
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                     left: 16, right: 16, top: 8, bottom: 8),
-                                child: new SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: new Column(
-                                    children: <Widget>[
-                                      Text(
-                                        '''${info[i].content}''',
-                                        textAlign: TextAlign.justify,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          letterSpacing: 0.27,
-                                          color: DesignTheme.grey,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      AnimatedOpacity(
-                                          duration: const Duration(milliseconds: 500),
-                                          opacity: opacity3,
-                                          child: Stack(
-                                            children: <Widget>[
-                                              Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.spaceAround,
-                                                    children: <Widget>[
-                                                      SizedBox(width: 20),
-                                                      Expanded(
-                                                        child: FlatButton(
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                              new BorderRadius.circular(
-                                                                  15.0)),
-                                                          color: DesignTheme.nearlyBlue,
-                                                          onPressed: () {
-                                                            setState(() {});
-                                                          },
-                                                          child: Text(
-                                                            'Chương trước',
-                                                            textAlign: TextAlign.left,
-                                                            style: TextStyle(
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: 18,
-                                                              letterSpacing: 0.0,
-                                                              color:
-                                                              DesignTheme.nearlyWhite,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: 20),
-                                                      Expanded(
-                                                        child: FlatButton(
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                              new BorderRadius.circular(
-                                                                  15.0)),
-                                                          color: DesignTheme.nearlyBlue,
-                                                          onPressed: () {
-                                                            setState(() {});
-                                                          },
-                                                          child: Text(
-                                                            'Chương tới',
-                                                            textAlign: TextAlign.left,
-                                                            style: TextStyle(
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: 18,
-                                                              letterSpacing: 0.0,
-                                                              color:
-                                                              DesignTheme.nearlyWhite,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: 20),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          )),
-                                    ],
+                                child: Text(
+                                  '${info[i].content}',
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    letterSpacing: 0.27,
+                                    color: DesignTheme.grey,
                                   ),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
+                              ),
+                            ),
+                          ),
+                          AnimatedOpacity(
+                            duration: const Duration(milliseconds: 500),
+                            opacity: opacity3,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 16, bottom: 16, right: 16),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Container(
+                                      height: 48,
+                                      decoration: BoxDecoration(
+                                        color: DesignTheme.nearlyBlue,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        boxShadow: <BoxShadow>[
+                                          BoxShadow(
+                                              color: DesignTheme
+                                                  .nearlyBlue
+                                                  .withOpacity(0.5),
+                                              offset: const Offset(1.1, 1.1),
+                                              blurRadius: 10.0),
+                                        ],
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          'Join Course',
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18,
+                                            letterSpacing: 0.0,
+                                            color: DesignTheme
+                                                .nearlyWhite,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           ),
@@ -235,6 +221,12 @@ class _ChapterScreenState extends State<ChapterScreen>
         decoration: BoxDecoration(
           color: DesignTheme.nearlyWhite,
           borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: DesignTheme.grey.withOpacity(0.2),
+                offset: const Offset(1.1, 1.1),
+                blurRadius: 8.0),
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.only(
@@ -257,7 +249,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                 txt2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w200,
                   fontSize: 14,
                   letterSpacing: 0.27,
                   color: DesignTheme.grey,
